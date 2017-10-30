@@ -22,6 +22,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Km3-2F-3Y6" appends="YES" id="1wT-ID-I2w"/>
+                                    <outletCollection property="gestureRecognizers" destination="bgy-gO-pfX" appends="YES" id="CRl-fr-5Nt"/>
                                 </connections>
                             </arscnView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJy-ge-SgO">
@@ -56,6 +57,11 @@
                         <action selector="tapped:" destination="BYZ-38-t0r" id="hLT-SA-pwj"/>
                     </connections>
                 </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="bgy-gO-pfX">
+                    <connections>
+                        <action selector="dragged:" destination="BYZ-38-t0r" id="0YC-Wf-dEf"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
