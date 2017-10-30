@@ -18,6 +18,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configuration.planeDetection = .horizontal
+
         self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
         self.sceneView.showsStatistics = true
         self.sceneView.session.run(configuration)
@@ -30,35 +33,50 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
-        guard let pointOfView = sceneView.pointOfView else { return }
-        let transform = pointOfView.transform
-        let orientation = SCNVector3(-transform.m31, -transform.m32, -transform.m33)
-        let location = SCNVector3(transform.m41, transform.m42, transform.m43)
-        let currentPositionOfCamera = orientation + location
-        DispatchQueue.main.async {
-            if self.draw.isHighlighted {
-                let sphereNode = SCNNode(geometry: SCNSphere(radius: 0.02))
-                sphereNode.position = currentPositionOfCamera
-                self.sceneView.scene.rootNode.addChildNode(sphereNode)
-                sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-            } else {
-                let pointer = SCNNode(geometry: SCNSphere(radius: 0.01))
-                pointer.name = "pointer"
-                pointer.position = currentPositionOfCamera
-                
-                self.sceneView.scene.rootNode.enumerateChildNodes({ (node, _) in
-                    if node.name == "pointer" {
-                        node.removeFromParentNode()
-                    }
-                })
-                
-                self.sceneView.scene.rootNode.addChildNode(pointer)
-                pointer.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-            }
-        }
+//        guard let pointOfView = sceneView.pointOfView else { return }
+//        let transform = pointOfView.transform
+//        let orientation = SCNVector3(-transform.m31, -transform.m32, -transform.m33)
+//        let location = SCNVector3(transform.m41, transform.m42, transform.m43)
+//        let currentPositionOfCamera = orientation + location
+//        DispatchQueue.main.async {
+//            if self.draw.isHighlighted {
+//                let sphereNode = SCNNode(geometry: SCNSphere(radius: 0.02))
+//                sphereNode.position = currentPositionOfCamera
+//                self.sceneView.scene.rootNode.addChildNode(sphereNode)
+//                sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+//            } else {
+//                let pointer = SCNNode(geometry: SCNSphere(radius: 0.01))
+//                pointer.name = "pointer"
+//                pointer.position = currentPositionOfCamera
+//
+//                self.sceneView.scene.rootNode.enumerateChildNodes({ (node, _) in
+//                    if node.name == "pointer" {
+//                        node.removeFromParentNode()
+//                    }
+//                })
+//
+//                self.sceneView.scene.rootNode.addChildNode(pointer)
+//                pointer.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+//            }
+//        }
         
         
     }
+    
+    @IBAction func tapped(_ sender: UITapGestureRecognizer) {
+        let tapPoint = sender.location(in: sceneView)
+        let results = sceneView.hitTest(tapPoint, types: .featurePoint)
+        print("tap")
+        if let hitPoint = results.first {
+            let point = SCNVector3(hitPoint.worldTransform.columns.3.x, hitPoint.worldTransform.columns.3.y, hitPoint.worldTransform.columns.3.z)
+            let sphereNode = SCNNode(geometry: SCNSphere(radius: 0.02))
+            sphereNode.position = point
+            self.sceneView.scene.rootNode.addChildNode(sphereNode)
+            sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+            print("object")
+        }
+    }
+    
 }
 
 func +(left: SCNVector3, right: SCNVector3) -> SCNVector3 {
