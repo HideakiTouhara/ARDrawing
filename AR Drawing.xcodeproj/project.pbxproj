@@ -12,6 +12,7 @@
 		072B59721FA6E24300D9A4AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 072B59701FA6E24300D9A4AE /* Main.storyboard */; };
 		072B59741FA6E24300D9A4AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 072B59731FA6E24300D9A4AE /* Assets.xcassets */; };
 		072B59771FA6E24300D9A4AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 072B59751FA6E24300D9A4AE /* LaunchScreen.storyboard */; };
+		072B59801FA7811B00D9A4AE /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072B597F1FA7810600D9A4AE /* Accelerate.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		072B59731FA6E24300D9A4AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		072B59761FA6E24300D9A4AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		072B59781FA6E24300D9A4AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		072B597F1FA7810600D9A4AE /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				072B59801FA7811B00D9A4AE /* Accelerate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +43,7 @@
 			children = (
 				072B596B1FA6E24300D9A4AE /* AR Drawing */,
 				072B596A1FA6E24300D9A4AE /* Products */,
+				072B597E1FA7810600D9A4AE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +66,14 @@
 				072B59781FA6E24300D9A4AE /* Info.plist */,
 			);
 			path = "AR Drawing";
+			sourceTree = "<group>";
+		};
+		072B597E1FA7810600D9A4AE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				072B597F1FA7810600D9A4AE /* Accelerate.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

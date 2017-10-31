@@ -8,6 +8,7 @@
 
 import UIKit
 import ARKit
+import Accelerate
 
 class ViewController: UIViewController, ARSCNViewDelegate {
     
