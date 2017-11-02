@@ -82,14 +82,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         let tapPoint = sender.location(in: sceneView)
         let results = sceneView.hitTest(tapPoint, types: .featurePoint)
-        print("tap")
         if let hitPoint = results.first {
-            let point = SCNVector3(hitPoint.worldTransform.columns.3.x, hitPoint.worldTransform.columns.3.y, hitPoint.worldTransform.columns.3.z)
+            let length = sqrt(hitPoint.worldTransform.columns.3.x * hitPoint.worldTransform.columns.3.x + hitPoint.worldTransform.columns.3.y * hitPoint.worldTransform.columns.3.y + hitPoint.worldTransform.columns.3.z * hitPoint.worldTransform.columns.3.z)
+            let point = SCNVector3(hitPoint.worldTransform.columns.3.x / length, hitPoint.worldTransform.columns.3.y / length, hitPoint.worldTransform.columns.3.z / length)
             let sphereNode = SCNNode(geometry: SCNSphere(radius: 0.02))
             sphereNode.position = point
             self.sceneView.scene.rootNode.addChildNode(sphereNode)
             sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-            print("object")
         }
     }
     
